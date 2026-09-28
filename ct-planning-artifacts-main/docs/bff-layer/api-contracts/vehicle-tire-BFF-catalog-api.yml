@@ -1,0 +1,387 @@
+openapi: 3.0.3
+info:
+  title: Catalog Load API
+  version: 1.0.1
+  description: |
+    Unified API supporting:
+
+    1. Vehicle Search Flow
+       - year → make → model → trim
+
+    2. Tire Size Search Flow
+       - width → aspectRatio → rimDiameter
+
+    3. License Plate Flow
+       - state → trim (via plateNumber)
+
+    4. Tire Fitment (Final Step)
+       - Returns tire size options for selected vehicle
+
+    ---------------------------------------
+    BEHAVIOR RULES
+    ---------------------------------------
+
+    ✅ ATTRIBUTE API (Dropdowns)
+    Triggered when `type` is present
+
+    ✅ FITMENT API (Final Result)
+    Triggered when `type` is NOT present
+    AND required params are provided:
+      - year, make, model, trim
+
+servers:
+  - url: https://api.example.com
+
+paths:
+
+  /v1/catalog/tires/attributes:
+    get:
+      summary: Catalog API (Vehicle, Tire Size, License Plate, Fitment)
+
+      parameters:
+
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - year
+              - make
+              - model
+              - trim
+              - width
+              - aspectRatio
+              - rimDiameter
+              - state
+
+        - name: year
+          in: query
+          schema:
+            type: string
+
+        - name: make
+          in: query
+          schema:
+            type: string
+
+        - name: model
+          in: query
+          schema:
+            type: string
+
+        - name: trim
+          in: query
+          schema:
+            type: string
+
+        - name: width
+          in: query
+          schema:
+            type: string
+
+        - name: aspectRatio
+          in: query
+          schema:
+            type: string
+
+        - name: cultureCode
+          in: query
+          required: true
+          schema:
+            type: string
+            example: en-US
+
+        - name: plateNumber
+          in: query
+          schema:
+            type: string
+
+        - name: state
+          in: query
+          schema:
+            type: string
+
+        - name: zipcode
+          in: query
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: Attribute or Tire Fitment Response
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/AttributeResponse'
+                  - $ref: '#/components/schemas/TireFitmentResponse'
+
+              examples:
+
+                # -------------------------
+                # VEHICLE FLOW
+                # -------------------------
+
+                yearExample:
+                  summary: Fetch vehicle years
+                  value:
+                    attribute_type: "year"
+                    options:
+                      - value: "2015"
+                        label: "2015"
+                      - value: "2016"
+                        label: "2016"
+                    metadata:
+                      total_options: 4
+
+                makeExample:
+                  summary: Fetch makes by year
+                  value:
+                    attribute_type: "make"
+                    parent_context:
+                      year: "2024"
+                    options:
+                      - value: "toyota"
+                        label: "Toyota"
+
+                modelExample:
+                  summary: Fetch models
+                  value:
+                    attribute_type: "model"
+                    parent_context:
+                      year: "2024"
+                      make: "Toyota"
+                    options:
+                      - value: "camry"
+                        label: "Camry"
+
+                trimExample:
+                  summary: Fetch trims
+                  value:
+                    attribute_type: "trim"
+                    parent_context:
+                      year: "2024"
+                      make: "Toyota"
+                      model: "Camry"
+                    options:
+                      - value: "LE"
+                        label: "LE"
+
+                # -------------------------
+                # TIRE SIZE FLOW
+                # -------------------------
+
+                widthExample:
+                  summary: Fetch tire widths
+                  value:
+                    attribute_type: "width"
+                    options:
+                      - value: "35"
+                        label: "35"
+                      - value: "37"
+                        label: "37"
+                    metadata:
+                      total_options: 7
+
+                aspectRatioExample:
+                  summary: Fetch aspect ratios
+                  value:
+                    attribute_type: "aspectRatio"
+                    parent_context:
+                      width: "35"
+                    options:
+                      - value: "11.0"
+                        label: "11.0"
+
+                rimDiameterExample:
+                  summary: Fetch rim diameters
+                  value:
+                    attribute_type: "rimDiameter"
+                    parent_context:
+                      width: "35"
+                      aspectRatio: "11.0"
+                    options:
+                      - value: "14"
+                        label: "14"
+
+                # -------------------------
+                # LICENSE PLATE FLOW
+                # -------------------------
+
+                stateExample:
+                  summary: Fetch states
+                  value:
+                    attribute_type: "state"
+                    options:
+                      - value: "Kansas"
+                        label: "Kansas"
+                      - value: "Maine"
+                        label: "Maine"
+                    metadata:
+                      total_options: 7
+
+                plateTrimExample:
+                  summary: Fetch trim using license plate
+                  value:
+                    attribute_type: "trim"
+                    parent_context:
+                      year: "2024"
+                      make: "Toyota"
+                      model: "Camry"
+                    options:
+                      - value: "LE"
+                        label: "LE"
+
+                # -------------------------
+                # FINAL FITMENT RESPONSE
+                # -------------------------
+
+                fitmentExample:
+                  summary: Tire fitment response (staggered)
+                  value:
+                    status: "SUCCESS"
+                    searchType: "VEHICLE"
+                    vehicle:
+                      year: 2022
+                      make: "Aston Martin"
+                      model: "DBS"
+                      trim: "Volante"
+                    fitmentType: "STAGGERED"
+                    tireOptions:
+                      front:
+                        - tireSize: "265/35R21"
+                          rimSize: 21
+                          isDefault: true
+                      rear:
+                        - tireSize: "305/30R21"
+                          rimSize: 21
+                          isDefault: true
+
+                fitmentExampleSquare:
+                  summary: Tire fitment response (same front and rear)
+                  value:
+                    status: "SUCCESS"
+                    searchType: "VEHICLE"
+                    vehicle:
+                      year: 2022
+                      make: "Aston Martin"
+                      model: "DBS"
+                      trim: "Volante"
+                    fitmentType: "SQUARE"
+                    tireOptions:
+                      front:
+                        - tireSize: "275/35R20"
+                          rimSize: 20
+                          isDefault: true
+                      rear:
+                        - tireSize: "275/35R20"
+                          rimSize: 20
+                          isDefault: true
+
+        '400':
+          description: Invalid request
+        '500':
+          description: Internal server error
+
+components:
+
+  schemas:
+
+    AttributeResponse:
+      type: object
+      properties:
+        attribute_type:
+          type: string
+
+        parent_context:
+          type: object
+          nullable: true
+          additionalProperties:
+            type: string
+
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/Option'
+
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+
+      required:
+        - attribute_type
+        - options
+        - metadata
+
+    Option:
+      type: object
+      properties:
+        value:
+          type: string
+        label:
+          type: string
+
+    Metadata:
+      type: object
+      properties:
+        total_options:
+          type: integer
+        server_timestamp:
+          type: string
+          format: date-time
+        cache_expiry:
+          type: string
+          format: date-time
+
+    TireFitmentResponse:
+      type: object
+      properties:
+        status:
+          type: string
+
+        searchType:
+          type: string
+
+        vehicle:
+          type: object
+          properties:
+            year:
+              type: integer
+            make:
+              type: string
+            model:
+              type: string
+            trim:
+              type: string
+
+        fitmentType:
+          type: string
+          description: |
+            Indicates tire configuration:
+            - STAGGERED → Different front and rear sizes
+            - SQUARE → Same front and rear sizes
+          enum:
+            - STAGGERED
+            - SQUARE
+
+        tireOptions:
+          type: object
+          properties:
+            front:
+              type: array
+              items:
+                $ref: '#/components/schemas/TireOption'
+            rear:
+              type: array
+              items:
+                $ref: '#/components/schemas/TireOption'
+
+    TireOption:
+      type: object
+      properties:
+        tireSize:
+          type: string
+        rimSize:
+          type: integer
+        isDefault:
+          type: boolean

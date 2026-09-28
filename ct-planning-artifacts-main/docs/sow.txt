@@ -1,0 +1,68 @@
+The goal of this project is to modernize the automotive member experience by replacing a fragmented digital journey with a high-performance, unified ecosystem designed to capture untapped market share. By re-envisioning the user journey based on behavioral research and industry standards, we aim to significantly reduce digital drop-offs and strengthen our credibility with the next generation of shoppers, particularly within the growing EV segment. This transformation centers on a "native-first" mobile strategy, leveraging the Costco mobile app's native UI and APIs to drive higher conversion rates and increase the frequency of repeat purchases.
+To achieve these objectives, we are systematically eliminating the friction points that currently lead to site abandonment. By providing real-time Inventory Availability for tires across local and regional warehouses, we ensure members have immediate visibility into product stock. Integrating an Installation Scheduler directly into the selection flow further optimizes club operations by improving tire installation bay utilization and reducing fragmented scheduling. Furthermore, by standardizing the Battery Sales experience, we provide a consistent, high-quality buying experience across all geographic regions.
+Beyond the transaction, we are investing in high-leverage content and member personalization to foster long-term loyalty. Implementing 3rd Party guides and specialized content pages (organized by driving needs, season, and category) empowers members to make informed decisions with minimal friction. Finally, by allowing members to store vehicles and purchase history on their profiles, we simplify the path to repurchase and rebate redemption, delivering the seamless value and convenience that defines the Costco member experience.
+
+
+SCOPE.
+Deliver a single, consistent tire-buying journey across Costco.com & .ca and the Costco mobile app, so members can start in any channel and complete in any channel—with fitment, pricing, and scheduling context preserved end-to-end. The experience must eliminate re-entry of information and prevent members from being redirected into disconnected scheduling or service flows.
+The Entry points intended are as follows:
+a) Start Tire Search (highest intent): The primary conversion path: straight to fitment, minimal browsing.
+●
+Web: Tires landing page, Tires & Auto hub
+●
+Mobile: Home hero CTA, Search shortcut
+b) Global Search (fastest path): A universal entry that supports intent-based suggestions and shortcuts (e.g., Tires, Appointment, Rotation, Michelin promo).
+●
+Web: Costco.com site search
+●
+Mobile: Persistent app search
+c) Shop Navigation (browse intent): Category-based discovery for members who prefer browsing.
+●
+Web: Shop → Tires & Auto
+●
+Mobile: Shop tab → Tires & Auto
+d) Deals / Promotions (deal-first): All promotions should lead straight into the fitment-based tire search—never to a standalone promo page.
+●
+Web: Promo banners, tire storefront promos
+●
+Mobile: “Tire Savings” tile, Deals section
+e) Brand Entry (brand loyalists): Brand browsing should always route through fitment validation before adding any tire to cart
+●
+Web: Brand pages (e.g., Michelin, Pirelli)
+●
+Mobile: Brand shelves, “Shop by brand” Docusign Envelope ID: B72B3052-FCAD-4A37-BC14-A2EDCCDA81F7
+Fixed Fee SOW - Costco - v1.3 - August 2024
+CW2358123/CRW2358019 Page 3 of 30
+f) Services-First (install / rotate / flat repair): A services-led entry point that must not fragment into separate scheduling experiences.
+●
+Web: Warehouse/Tire Center pages, Tire Center FAQs
+●
+Mobile: Services tab (Schedule Appointment, Tire Center Services)
+g) Ownership / Reorder (repeat buyers): Retention and repeat-service path that makes “buy again” effortless.
+●
+Web: Account + Tire Center support content
+●
+Mobile: Account tab (My Vehicles, My Tires, Reorder, Appointments)
+Phased Delivery Plan:
+Phase 1 (A), Tires Journey Reimagine: This phase offers a clean experience for tire selection. This update improves the shopping experience and supports future enhancements. At tires.costco.com/.ca, we aim to reduce purchase friction and abandonment by simplifying user journeys. This foundational work builds digital trust and navigation, boosting conversions. This approach will change how customers find the tires they need!
+Phase 1 (B), Azure to GCP Migration: This phase is our attempt to modernize the hosting platform to bring the tires application to Costco preferred cloud provider services. For complete scope refer to Infogain - Costco-Tires-Azure-To-GCP Migration-V5.pdf in the tires folder
+Phase 2, Tires Mobile App: Costco Wholesale’s mobile apps (iOS & Android) transitioned from hybrid to native, resulting in significantly better user experience and engagement. Currently, the Costco Tire section lacks a native interface, offering only a link to the web version. This initiative will build a fully native tire shopping experience within the existing app, covering navigation, marketing & educational content, product listing and detail pages, search, filters, and additional content. The native tire experience will integrate features like single sign-on, profile, cart, and checkout. This phase aims to deliver an engaging, seamless purchase journey for members, including enhanced cross-sell and upsell opportunities. For complete scope refer to Costco Tires & Batteries-Transforming to Native App.pdf in the tires folder
+Phase 3, Digital Experience Modernization for features like
+(A)Inventory Availability for Selected Warehouse Inventory and Nearby: Please refer to reference Annexure section
+(B) Installation Scheduler with ability to view number of open slots during tire selection process: Please refer to reference Annexure section
+(C) Tire Education Guide with 3rd party content: Please refer to reference Annexure section
+(D) New Content Pages or browse by driving needs, season, category, family, EV cars Please refer to reference screen shot: This phase enhances the shopping experience by enabling seamless web-to-store interactions with real-time scheduling and appointment tools. It effectively minimizes no-shows and optimizes install bay usage, while also capturing lost revenue through abandoned carts and incomplete bookings, leading to improved overall business performance.
+Phase 4, (A) User Journey Tracking and (B) Battery Sales: This phase will provide insights into purchase behavior by capturing insights into member behavior; we can refine our tire-buying expertise, making it more intuitive and rewarding for all members. Also provide the missing functionality for Battery sales for the US Business.
+Phase 5, (A) Features like Vehicle Profile & (B) Order History: This phase enhances the member experience by simplifying repeat purchase interactions. Please refer to reference Annexure section
+Refer to Screenshots of Tires Design.pdf for additional screen shots
+
+Current website: 
+https://tires.costco.com
+https://tires.costco.ca
+
+New design screens are placed in the folder: /docs/images/**
+
+Here are couple of website URLs for the competitive products: 
+https://www.tirerack.com/
+https://www.discounttire.com/
+https://simpletire.com/

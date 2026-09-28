@@ -1,0 +1,224 @@
+Purpose: Help shoppers find tires that fit their vehicle and are available for installation at a selected warehouse at their preferred time. 
+
+Goals
+#|	Experience Goals |	Business Impact
+1|	Native Mobile app experience for tire selection and appointment booking | Engagement rate, Click through rate, conversion rate
+2|	Consistent experience across costco.com/ca web, mobile and other products | Lower exit/drop-off, bounce rate
+3|	Preserve shopper context across touchpoints | Improve conversion, add to cart rate, loyalty (returning customer volume increases)
+4|	Eliminate flows that redirect shoppers into any disconnected experience (taking them away from scheduling/service) | Improved add to cart/checkout
+		Higher Completion rate
+
+
+User Personas
+1. Task/ Mission‑Driven Buyer
+
+Short Description: A shopper who arrives with a clear goal: buy the correct tires fast, without distractions.
+
+Entry Point: Start Tire Search (highest‑intent flow)
+
+What Makes Them Different:
+Wants the shortest path to fitment → results → checkout.
+Has no interest in browsing or learning.
+Extremely sensitive to steps, load time, and friction.
+Measures success by speed and certainty.
+
+
+
+2. Searcher / Problem Solver
+
+Short Description: A user who begins by typing a direct keyword, size, or brand into search instead of navigating menus.
+
+Entry Point: Global Search (query‑driven, fastest targeted access)
+
+What Makes Them Different:
+Trusts search boxes more than menus.
+Wants intelligent suggestions and quick shortcuts.
+Often knows something (size, brand, need) but needs confirmation.
+Success depends on high search accuracy and intent detection.
+
+
+
+3. Explorer / Category Browser
+
+Short Description: A shopper who prefers to browse, compare, and educate themselves before deciding.
+
+Entry Point: Shop Navigation (category‑based exploration)
+
+What Makes Them Different:
+Moves through filters, categories, and comparison pages.
+Wants to understand options before committing.
+May not know their size or brand preference yet.
+Needs strong navigation, filters, and educational modules.
+
+
+4. Deal Hunter / Promo‑Driven Buyer
+
+Short Description:
+A price‑sensitive shopper motivated by promotions, seasonal deals, or coupons.
+
+Entry Point: Deals / Promotions (deal‑first journey)
+
+What Makes Them Different:
+Arrives from banners, email, or homepage promos.
+Expects instant value, not a shopping tour.
+Needs promos to auto‑route into fitment, not landing pages.
+Abandons quickly if they can’t see whether it’s a valid deal
+
+
+5. Brand Loyalist / Preference‑Anchored Buyer
+
+Short Description: A shopper who trusts a specific brand (e.g., Michelin, Bridgestone) and starts from that brand.
+
+Entry Point: Brand Entry (brand galleries or brand search)
+
+What Makes Them Different:
+Decision anchored in trust of a brand, not price or broad exploration.
+Needs fitment validation before seeing SKUs, or trust is lost.
+Responds well to brand‑specific value messaging.
+Success depends on filtering SKUs to only what fits their vehicle.
+
+
+6. Maintenance Seeker / Car‑Care Planner
+
+Short Description: A user arriving to solve a service need — rotation, flat repair, or installation.
+
+Entry Point: Services‑First (service menu → scheduling)
+
+What Makes Them Different:
+Primary intent is service, not tire shopping.
+Must have one unified scheduling flow, not multiple tools.
+Tires may be a secondary upsell opportunity.
+Values convenience, nearest warehouse availability, and clarity.
+
+
+7. Repeat Buyer / Owner
+
+Short Description: A returning customer who already bought tires from Costco and wants an effortless reorder.
+
+Entry Point: Ownership / Reorder (Buy Again, past purchase history)
+
+What Makes Them Different:
+Expects a frictionless 1‑ to 2‑step path.
+Fitment auto‑validated from saved vehicle data.
+High lifetime value if the experience is smooth.
+Least tolerant of re‑entering information.
+
+
+User Journeys for personas
+
+Persona 1 and 2: User Journey 1 is applicable to Mission driven buyer, Searcher/Problem Solver
+Persona 3: For explorer/category browser, the journey before Search dialog will consist of browsing through pages, however rest of journey remains same as the user journey 1.
+Persona 4: For deal hunter/Promo driven buyer the start point would change to Savings page and then remain same as User Journey 1
+Persona 5: For brand loyalist, the user Journey 2 is applicable
+
+User Journey 1
+Home page
+Select Warehouse or Tire Center
+
+Search Dialog (Search by License Plate, Vehicle, Size, Item #)
+
+Size Selection
+
+Search Results Page/Product List Page
+Change Warehouse or Tire Center
+
+Product Detail Page
+
+Cart Page
+
+Checkout 
+
+Order Confirmation
+
+Schedule Appointment 
+
+Appointment Confirmation
+
+
+
+User Journey 2
+Home page
+Select Warehouse or Tire Center
+Click on Brand Image
+
+Brand Landing Page
+Click on Shop our Tires
+
+Search Modal (Search by License Plate, Vehicle, Size, Item#)
+
+Size Selection
+View Tires
+
+Search Results Page/Product List Page
+Change Warehouse or Tire Center
+
+Product Detail Page
+
+Cart Page
+
+Checkout 
+
+Order Confirmation
+
+Schedule Appointment 
+
+Appointment Confirmation
+
+
+Persona 6: User Journey 3 is applicable to Quick Service seeker
+
+Persona 7: User Journey 4 is applicable to Repeat Buyer  
+
+
+User Journey 3
+
+Home page
+Select Warehouse or Tire Center
+
+Proceed to Appointment
+
+Confirm Tire selection or Vehicle details
+
+Select Service
+
+Schedule Appointment
+
+Appointment Confirmation
+
+
+User Journey 4
+Home page
+
+My Account 
+
+Select/View Order
+
+Buy Again
+
+Confirm Tire Selection or Vehicle details
+
+Checkout 
+
+Order Confirmation
+
+Schedule Appointment 
+
+Appointment Confirmation 
+
+
+User Persona – Product Priority Matrix
+
+Persona|	Primary Goal	|Product Priority	| KPI
+Task/ Mission‑Driven|	Buy the right tires quickly without any confusion|	Fastest path to fitment and checkout, eliminate diversions; prefill vehicle info; strongest performance budget|	Add to Cart conversion
+			
+Searcher/ Problem Solver|	Jump directly to what they want using keywords|	High‑accuracy| intent detection,synonyms support, pre‑fitment search routing, quick links|Search success rate
+			
+Explorer/ Category Browser|	Browse, compare, learn before deciding	|Strong navigation,Educational modules, filters, comparison tools, guidance to fitment	|Engagement depth, CTR
+		 	
+Deal Hunter/ Promo‑Driven Buyer|	Find the best deal quickly that fits their car|	Promo auto applied and complete fitment,no dead‑end promo pages; clear savings messaging| Fitment start rate
+			
+Brand Loyalist|	Buy tires from their most trusted brand (e.g., Michelin, Bridgestone)|	Brand pages and member specific fitment with SKUs|Validated fitment rate/fitment conversion rate
+Quick Service Seeker|	Schedule service easily without navigating multiple tools| One unified scheduling experience surface nearest warehouses; tie services back to tire lifecycle| Appointment completion
+			
+Repeat Buyer|	Reorder fast with minimal effort| Buy Again/Reorder journey and shortcuts prefilled vehicle + tire size, member history| Reorder success rate (not frequency), Time taken to checkout
+

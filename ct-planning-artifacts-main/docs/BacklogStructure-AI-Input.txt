@@ -1,0 +1,42 @@
+#Type		EPIC						            Feature
+1Functional	Tire Discovery & Vehicle Matching		Vehicle Search
+ 	 	 						                    License Plate Search
+ 	 	 						                    Tire Size Search
+ 	 	 						                    Item Number Search
+ 	 	 						                    Size Selection
+ 	 	 						                    Fitment Resolution (resolve OEM tires, handle alternates, staggered sizes)
+ 	 	 						                    Inventory Availability
+2Functional	Customer Experience - Homepage			Homepage
+			 and Brand Content	
+ 	 	 						                    Brand Landing Pages
+ 	 	 						                    Tire Education
+ 	 	 						                    Content Pages
+3Functional	Customer Experience - Warehouse Selection	Warehouse Selection and preferences
+4Functional	Customer Experience - Search API		Onsite Search (API)
+5Functional	Tire Browsing, Filters & PDP			PLP navigation filters
+ 	 	 						                    Product Badging & Compare
+ 	 	 						                    PDP
+ 	 	 						                    Pricing & Promotions
+6Functional	Cart, Warehouse Selection & Checkout	Warehouse selection validation before checkout
+ 	 	 						                    Membership signin / validation
+ 	 	 						                    Order summary with installation package info
+ 	 	 						                    Confirmation & next steps
+7Functional	Appointment Scheduling				    Installation Scheduler (API for appointment visibility during tire selection)
+8Functional	Customer Experience - Warranty, Services & Care Content	Costco Advantage education module
+ 	 	 						                    Road Hazard Warranty explainer
+ 	 	 						                    Tire Care & FAQ hub
+9Functional	Member Login/Registration		    	Member registration, login, passkeys
+ 	 	 						                    Order History
+ 	 	 						                    Vehicle Profile
+10Functional	Customer Analytics & PersonalizationUser Journey Tracking
+11Functional	Notifications					    Member account specific notifications
+ 	 	 						                    Order and appointment notifications
+12Functional	US Batteries Microsite				Setup of Batteries sales on US store
+13NFR		Performance, Reliability & Observability	Performance benchmarks across devices and validation
+14NFR		Accessibility					        Accessibility compliance and validation
+15NFR		Customer Experience - Cross application	User Context-Fitment Resolution
+				 context preservation	
+ 	 	 						                    User Context-Pricing
+ 	 	 						                    User Context-Scheduling
+16NFR		Localization					        French content for Canada
+17NFR		Security and Privacy				      Security testing

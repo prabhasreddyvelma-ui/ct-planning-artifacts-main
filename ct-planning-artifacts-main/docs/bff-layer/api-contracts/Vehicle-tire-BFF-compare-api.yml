@@ -1,0 +1,252 @@
+openapi: 3.0.3
+info:
+  title: Tire Comparison API
+  description: API to compare multiple tires based on item numbers and search context
+  version: 1.0.0
+
+servers:
+  - url: https://api.yourdomain.com
+
+paths:
+  /api/tires/compare:
+    get:
+      summary: Compare tires
+      description: Returns comparison details for given tire item numbers
+      parameters:
+        - name: itemNumber
+          in: query
+          description: Comma-separated tire item numbers
+          required: true
+          schema:
+            type: string
+            example: "1037306,1042429"
+
+        - name: searchType
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [vehicle, size]
+            example: vehicle
+
+        - name: year
+          in: query
+          required: false
+          schema:
+            type: string
+            example: "2022"
+
+        - name: make
+          in: query
+          required: false
+          schema:
+            type: string
+            example: BMW
+
+        - name: model
+          in: query
+          required: false
+          schema:
+            type: string
+            example: M3
+
+        - name: trim
+          in: query
+          required: false
+          schema:
+            type: string
+            example: Competition
+
+        - name: width
+          in: query
+          required: false
+          schema:
+            type: integer
+            example: 255
+
+        - name: aspectRatio
+          in: query
+          required: false
+          schema:
+            type: integer
+            example: 35
+
+        - name: rim
+          in: query
+          required: false
+          schema:
+            type: integer
+            example: 20
+
+      responses:
+        '200':
+          description: Successful tire comparison response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TireCompareResponse'
+
+components:
+  schemas:
+
+    TireCompareResponse:
+      type: object
+      properties:
+        searchContext:
+          $ref: '#/components/schemas/SearchContext'
+        comparison:
+          type: array
+          maxItems: 4
+          items:
+            $ref: '#/components/schemas/Tire'
+        meta:
+          $ref: '#/components/schemas/Meta'
+
+    SearchContext:
+      type: object
+      properties:
+        searchType:
+          type: string
+          example: vehicle/size
+        vehicle:
+          $ref: '#/components/schemas/Vehicle'
+        tireSize:
+          $ref: '#/components/schemas/TireSize'
+
+    Vehicle:
+      type: object
+      properties:
+        year:
+          type: string
+        make:
+          type: string
+        model:
+          type: string
+        trim:
+          type: string
+
+    TireSize:
+      type: object
+      properties:
+        width:
+          type: integer
+        aspectRatio:
+          type: integer
+        rim:
+          type: integer
+
+    Tire:
+      type: object
+      properties:
+        position:
+          type: integer
+          example: 1
+
+        brand:
+          $ref: '#/components/schemas/Brand'
+
+        tireName:
+          type: string
+          example: Michelin - Pilot Sport Cup 2 (240)
+
+        type:
+          type: string
+          example: Summer
+
+        image:
+          type: string
+          format: uri
+
+        itemNo:
+          type: string
+
+        mfgItemNo:
+          type: string
+
+        price:
+          $ref: '#/components/schemas/Price'
+
+        specs:
+          $ref: '#/components/schemas/Specs'
+
+    Brand:
+      type: object
+      properties:
+        name:
+          type: string
+        logo:
+          type: string
+          format: uri
+
+    Price:
+      type: object
+      properties:
+        single:
+          type: number
+          nullable: true
+          example: 424.99
+        currency:
+          type: string
+          example: USD
+        availability:
+          type: string
+        setOf4:
+          type: string
+          nullable: true
+
+    Specs:
+      type: object
+      properties:
+        season:
+          type: string
+        originalEquipment:
+          type: string
+        feature:
+          type: array
+          items:
+            type: string
+          nullable: true
+        tireSize:
+          type: string
+        sidewall:
+          type: string
+        loadIndex:
+          type: integer
+        speedRating:
+          type: string
+        measuringRimWidth:
+          type: string
+        overallDiameter:
+          type: string
+        utqg:
+          type: string
+          nullable: true
+        temperatureResistance:
+          type: string
+          nullable: true
+        tireTraction:
+          type: string
+          nullable: true
+        treadDepth:
+          type: string
+        revolutionsPerMile:
+          type: integer
+        maximumLoad:
+          type: string
+        rimWidthRange:
+          type: string
+        warranty:
+          type: string
+          nullable: true
+
+    Meta:
+      type: object
+      properties:
+        totalCompared:
+          type: integer
+          example: 2
+        emptySlots:
+          type: integer
+          example: 2
+        source:
+          type: string

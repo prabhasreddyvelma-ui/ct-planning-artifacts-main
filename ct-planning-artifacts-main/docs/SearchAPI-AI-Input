@@ -1,0 +1,25 @@
+Customer Search on Costco Web and Mobile - 
+Search API is called whenever the customer initiates a search on the website or mobile app
+1. Search by License plate - License Plate and State
+2. Search by Vehicle - Year, Make, Model, Trim (each of the values depend on previous one being entered, for example, Year before Make)
+3. Search by size - Width, Aspect, Rim
+   - option to add different rear tire for staggered fitment
+4. Search by item # - item#, part #
+
+Filter Parameters on PLP:
+Price range
+Promotion (on/off)
+Brand 
+Season
+Compatibility
+Run Flat
+Load Index
+Speed Rating
+
+Sorting on PLP:
+Best Match
+Top Selling
+Price: Low to High
+Price: High to Low
+UTQG: High to Low
+Promotion

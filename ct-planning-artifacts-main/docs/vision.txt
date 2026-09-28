@@ -1,0 +1,32 @@
+Purpose: Help shoppers find tires that fit their vehicle and are available for installation at a selected warehouse at their preferred time. 
+Goals: 
+#Experience GoalsBusiness Impact1Native Mobile app experience for tire selection and appointment bookingEngagement rate, Click through rate, conversion rate2Consistent experience across costco.com/ca web, mobile and other productsLower exit/drop-off, bounce rate
+Returning customer volume increases3Preserve shopper context across touchpointsCLV4Eliminate flows that redirect shoppers into any disconnected experience (taking them away from scheduling/service)Improved add to cart/checkout
+User Personas
+- Loyalist
+- Repeat Shopper
+- Intent based: Tire Search, Global search, Browse and navigate, Deal first, Service first (install/rotate/flat)
+
+Functional 
+- System must validate the tire size format and match customer requirement
+- Warehouse availability and timeline for delivery to the warehouse must be accurate
+- Available appointment times must be displayed to the shopper during the tire selection process
+- Warehouse specific inventory must be indicated to the shopper (along with clear/quicker fulfillment dates)
+- No case of appointment cancellations after a shopper has already scheduled
+- 
+Non-Functional Requirements
+- Performance must be fast with load times of <=2 seconds
+- 99.99% uptime on the app and website
+- No instance of data loss or any such security issues
+- Ability for the application to scale real-time to support high volumes during any peak period or campaign driven spikes
+- Inclusive experience on the app and website for all shoppers through accessibility features
+- Compliance from a legal and regulatory standpoint
+UX
+Data
+Technical Considerations
+- Constraints, Dependencies, risks/assumptions
+
+
+
+
+

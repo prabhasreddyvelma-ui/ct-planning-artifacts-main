@@ -1,0 +1,382 @@
+openapi: 3.0.1
+info:
+  title: Tire Product Details API
+  description: API to fetch tire product details
+  version: 1.0.0
+
+servers:
+  - url: https://api.example.com
+
+paths:
+  /api/tires/{tire_id}:
+    get:
+      summary: Get tire product details
+      description: Fetch detailed information about a tire product using tire_id
+      parameters:
+        - name: tire_id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1446135"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TireProductResponse'
+
+components:
+  schemas:
+
+    TireProductResponse:
+      type: object
+      properties:
+        itemNo:
+          type: string
+        partNo:
+          type: string
+        productName:
+          type: string
+        brand:
+          type: string
+        model:
+          type: string
+        cultureCode:
+          type: string
+        supplierDetailInfo:
+          type: string
+
+        identifiers:
+          $ref: '#/components/schemas/Identifiers'
+
+        description:
+          type: string
+
+        benefits:
+          type: array
+          items:
+            type: string
+
+        features:
+          type: array
+          items:
+            type: string
+
+        tireFootNotes:
+          type: array
+          items:
+            type: string
+
+        specifications:
+          $ref: '#/components/schemas/Specifications'
+
+        fitment:
+          $ref: '#/components/schemas/Fitment'
+
+        supplier:
+          $ref: '#/components/schemas/Supplier'
+
+        seasonInfo:
+          $ref: '#/components/schemas/SeasonInfo'
+
+        media:
+          $ref: '#/components/schemas/Media'
+
+        pricing:
+          $ref: '#/components/schemas/Pricing'
+
+        fees:
+          $ref: '#/components/schemas/Fees'
+
+        orderSummary:
+          $ref: '#/components/schemas/OrderSummary'
+
+        quantityAndCart:
+          $ref: '#/components/schemas/QuantityAndCart'
+
+        availability:
+          $ref: '#/components/schemas/Availability'
+
+        warranty:
+          $ref: '#/components/schemas/Warranty'
+
+        source:
+          $ref: '#/components/schemas/Source'
+
+
+    Identifiers:
+      type: object
+      properties:
+        costcoItemNumber:
+          type: string
+        manufacturerPartNumber:
+          type: string
+
+    Specifications:
+      type: object
+      properties:
+        tireSize:
+          type: string
+        sectionWidth:
+          type: string
+        aspectRatio:
+          type: integer
+        rimDiameter:
+          type: integer
+        measuringRimWidth:
+          type: string
+        overallDiameter:
+          type: string
+        loadIndex:
+          type: integer
+        speedRating:
+          type: string
+        utqg:
+          type: string
+        traction:
+          type: string
+        temperatureResistance:
+          type: string
+        treadDepth:
+          type: string
+        revolutionsPerMile:
+          type: integer
+        maxLoad:
+          type: string
+        runFlat:
+          type: boolean
+        sidewall:
+          type: string
+        homologation:
+          type: string
+        season:
+          type: string
+        warranty:
+          type: string
+
+    Fitment:
+      type: object
+      properties:
+        vehicleFitmentDataRaw:
+          type: string
+        fitmentTireSize:
+          type: string
+        fitmentLoadIndex:
+          type: string
+        fitmentSpeedRating:
+          type: string
+        widthSplitted:
+          type: string
+        aspectSplitted:
+          type: string
+        rimSplitted:
+          type: string
+        fwidth:
+          type: integer
+        faspect:
+          type: integer
+        frim:
+          type: integer
+        isStaggeredTire:
+          type: boolean
+        isOriginalEquipment:
+          type: boolean
+
+    Supplier:
+      type: object
+      properties:
+        supplierName:
+          type: string
+        fittedOn:
+          type: string
+
+    SeasonInfo:
+      type: object
+      properties:
+        isWinterTire:
+          type: boolean
+        isAllSeasonTire:
+          type: boolean
+        season:
+          type: string
+
+    Media:
+      type: object
+      properties:
+        totalImageCount:
+          type: integer
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+
+    Image:
+      type: object
+      properties:
+        imageIndex:
+          type: integer
+        type:
+          type: string
+        altText:
+          type: string
+        isPrimary:
+          type: boolean
+        url:
+          type: string
+
+    Pricing:
+      type: object
+      properties:
+        unitPrice:
+          type: number
+          format: float
+        currency:
+          type: string
+        quantitySelected:
+          type: integer
+        originalPrice:
+          type: number
+        isMichelinPromoOn:
+          type: boolean
+        promotion:
+          $ref: '#/components/schemas/Promotion'
+
+    Promotion:
+      type: object
+      properties:
+        description:
+          type: string
+        promoAmount:
+          type: number
+        validFrom:
+          type: string
+          format: date
+        validTo:
+          type: string
+          format: date
+        applicableOnQuantity:
+          type: integer
+        isMemberPromo:
+          type: boolean
+
+    Fees:
+      type: object
+      properties:
+        perItem:
+          $ref: '#/components/schemas/FeeDetail'
+        totalForQuantity:
+          $ref: '#/components/schemas/FeeDetail'
+
+    FeeDetail:
+      type: object
+      properties:
+        installation:
+          type: number
+        disposal:
+          type: number
+        stateFeeAK:
+          type: number
+        tpmsFee:
+          type: number
+
+    OrderSummary:
+      type: object
+      properties:
+        setLabel:
+          type: string
+        originalPrice:
+          type: number
+        subtotal:
+          type: number
+        tax:
+          type: number
+          nullable: true
+        grandTotal:
+          type: number
+          nullable: true
+        note:
+          type: string
+
+    QuantityAndCart:
+      type: object
+      properties:
+        quantity:
+          type: integer
+        viewCartUrl:
+          type: string
+        addToCartLabel:
+          type: string
+        wheelIncluded:
+          type: boolean
+        wheelNote:
+          type: string
+
+    Availability:
+      type: object
+      properties:
+        isTireDetail:
+          type: boolean
+        isNewSku:
+          type: boolean
+        tempOutOfStock:
+          type: boolean
+        stockStatus:
+          type: string
+        shipping:
+          $ref: '#/components/schemas/Shipping'
+        installation:
+          $ref: '#/components/schemas/Installation'
+
+    Shipping:
+      type: object
+      properties:
+        type:
+          type: string
+        estimatedDeliveryDays:
+          type: string
+        deliveryDateRange:
+          $ref: '#/components/schemas/DateRange'
+
+    DateRange:
+      type: object
+      properties:
+        from:
+          type: string
+          format: date
+        to:
+          type: string
+          format: date
+
+    Installation:
+      type: object
+      properties:
+        required:
+          type: boolean
+        installationFee:
+          type: number
+
+    Warranty:
+      type: object
+      properties:
+        name:
+          type: string
+        duration:
+          type: string
+        warrantyType:
+          type: string
+        coverage:
+          type: array
+          items:
+            type: string
+
+    Source:
+      type: object
+      properties:
+        url:
+          type: string
+        queryParams:
+          type: object
+          additionalProperties:
+            type: string

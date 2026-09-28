@@ -1,0 +1,418 @@
+openapi: 3.0.3
+info:
+  title: Tire Search API
+  version: 1.0.0
+  description: Unified Tire Search API with filters, sorting, pagination, and multiple search modes.
+
+servers:
+  - url: https://api.example.com
+
+paths:
+
+  /v1/search/tires:
+    get:
+      summary: Search Tires
+      description: |
+        Supports:
+        - Vehicle search
+        - Tire size search
+        - Staggered (front/rear)
+        - Plate search
+        - Item lookup
+
+      parameters:
+
+        # Vehicle
+        - name: year
+          in: query
+          schema: { type: integer }
+          example: 2022
+        - name: make
+          in: query
+          schema: { type: string }
+          example: Toyota
+        - name: model
+          in: query
+          schema: { type: string }
+          example: Camry
+        - name: trim
+          in: query
+          schema: { type: string }
+          example: LE
+
+        # Size
+        - name: width
+          in: query
+          schema: { type: integer }
+          example: 225
+        - name: aspect_ratio
+          in: query
+          schema: { type: integer }
+          example: 55
+        - name: rim_size
+          in: query
+          schema: { type: integer }
+          example: 17
+
+        # Staggered
+        - name: front_width
+          in: query
+          schema: { type: integer }
+        - name: front_aspect_ratio
+          in: query
+          schema: { type: integer }
+        - name: front_rim_size
+          in: query
+          schema: { type: integer }
+        - name: rear_width
+          in: query
+          schema: { type: integer }
+        - name: rear_aspect_ratio
+          in: query
+          schema: { type: integer }
+        - name: rear_rim_size
+          in: query
+          schema: { type: integer }
+
+        # Plate
+        - name: plateNumber
+          in: query
+          schema: { type: string }
+        - name: state
+          in: query
+          schema: { type: string }
+
+        # Lookup
+        - name: itemNumber
+          in: query
+          schema: { type: string }
+        - name: partNumber
+          in: query
+          schema: { type: string }
+
+        # Filters
+        - name: brand
+          in: query
+          schema:
+            type: array
+            items: { type: string }
+          style: form
+          explode: false
+          example: "Michelin,Bridgestone"
+
+        - name: season
+          in: query
+          schema:
+            type: array
+            items: { type: string }
+          style: form
+          explode: false
+          example: "All-Season,Winter"
+
+        - name: features
+          in: query
+          schema:
+            type: array
+            items: { type: string }
+          style: form
+          explode: false
+          example: "Mud plus Snow"
+
+        - name: speed_rating
+          in: query
+          schema:
+            type: array
+            items: { type: string }
+          style: form
+          explode: false
+          example: "H,V"
+
+        - name: load_index
+          in: query
+          schema:
+            type: array
+            items: { type: integer }
+          style: form
+          explode: false
+          example: "98,102"
+
+        - name: promotion
+          in: query
+          schema: { type: boolean }
+          example: true
+
+        - name: run_flat
+          in: query
+          schema: { type: boolean }
+          example: false
+
+        - name: ev_compatible
+          in: query
+          schema: { type: boolean }
+          example: true
+
+        - name: min_price
+          in: query
+          schema: { type: number }
+          example: 150
+
+        - name: max_price
+          in: query
+          schema: { type: number }
+          example: 350
+
+        # Pagination & Sorting
+        - name: page
+          in: query
+          schema: { type: integer, default: 1 }
+
+        - name: page_size
+          in: query
+          schema: { type: integer, default: 20 }
+
+        - name: sort
+          in: query
+          schema:
+            type: string
+            enum: [bestMatch, priceLowToHigh, priceHighToLow, topRated]
+          example: bestMatch
+
+        - name: cultureCode
+          in: query
+          schema:
+            type: string
+            default: en-US
+
+      responses:
+        "200":
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TireSearchResponse'
+              examples:
+                sample:
+                  summary: Sample Response
+                  value:
+                    status: SUCCESS
+                    totalResults: 29
+                    tireSize: "235/55R19"
+                    sortApplied: bestMatch
+
+                    pagination:
+                      page: 1
+                      size: 20
+                      totalPages: 2
+
+                    products:
+                      - itemNumber: "1709677"
+                        name: "ALENZA SPORT A/S SP"
+                        brand: "Bridgestone"
+                        imageUrl: "/images/tires/1709677.jpg"
+                        type: "All-Season"
+                        tireSize: "235/55R19"
+                        loadIndex: 101
+                        speedRating: "V"
+                        runFlat: false
+                        evCompatible: true
+                        warranty: "40k miles"
+
+                        pricing:
+                          unitPrice: 316.99
+                          originalUnitPrice: 336.99
+                          setOf4Price: 1267.96
+                          originalSetOf4Price: 1347.96
+                          currency: "USD"
+                          discount:
+                            amount: 80
+                            type: "INSTANT"
+                            appliesTo: "SET_OF_4"
+                            description: "Save $80 Instantly"
+                            validFrom: "2026-02-23"
+                            validTo: "2026-04-05"
+
+                        badges:
+                          - "All-Season Tire"
+                          - "EV Compatible"
+                          - "On Promotion"
+
+                        features:
+                          - "Mud plus Snow"
+
+                        originalEquipment: true
+                        originallyFittedOn: "Nissan"
+                        availability: "IN_STOCK"
+
+                      - itemNumber: "1676469"
+                        name: "BLIZZAK LM005"
+                        brand: "Bridgestone"
+                        imageUrl: "/images/tires/1676469.jpg"
+                        type: "Winter"
+                        tireSize: "235/55R19"
+                        loadIndex: 105
+                        speedRating: "H"
+                        runFlat: false
+
+                        pricing:
+                          unitPrice: null
+                          setOf4Price: null
+                          currency: "USD"
+                          discount: null
+
+                        badges:
+                          - "Winter Tire"
+
+                        availability: "OUT_OF_STOCK"
+
+                    filters:
+                      price:
+                        min: 216.99
+                        max: 388.99
+                        currency: "USD"
+
+                      brand:
+                        - name: "Bridgestone"
+                          count: 14
+                        - name: "Michelin"
+                          count: 10
+
+                      season:
+                        - name: "All-Season"
+                          count: 18
+                        - name: "Winter"
+                          count: 5
+
+                      promotion:
+                        - value: true
+                          label: "On Promotion"
+                          count: 18
+
+                    sortOptions:
+                      - bestMatch
+                      - priceLowToHigh
+                      - priceHighToLow
+                      - topRated
+
+components:
+
+  schemas:
+
+    TireSearchResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        totalResults:
+          type: integer
+        tireSize:
+          type: string
+        sortApplied:
+          type: string
+
+        pagination:
+          type: object
+          properties:
+            page: { type: integer }
+            size: { type: integer }
+            totalPages: { type: integer }
+
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+
+        filters:
+          $ref: '#/components/schemas/Filters'
+
+        sortOptions:
+          type: array
+          items:
+            type: string
+
+    Product:
+      type: object
+      properties:
+        itemNumber: { type: string }
+        name: { type: string }
+        brand: { type: string }
+        imageUrl: { type: string }
+        type: { type: string }
+        tireSize: { type: string }
+        loadIndex: { type: integer }
+        speedRating: { type: string }
+        runFlat: { type: boolean }
+        evCompatible: { type: boolean }
+        warranty: { type: string }
+
+        pricing:
+          type: object
+          properties:
+            unitPrice: { type: number, nullable: true }
+            originalUnitPrice: { type: number, nullable: true }
+            setOf4Price: { type: number, nullable: true }
+            originalSetOf4Price: { type: number, nullable: true }
+            currency: { type: string }
+
+            discount:
+              type: object
+              nullable: true
+              properties:
+                amount: { type: number }
+                type: { type: string }
+                appliesTo: { type: string }
+                description: { type: string }
+                validFrom: { type: string }
+                validTo: { type: string }
+
+        badges:
+          type: array
+          items: { type: string }
+
+        features:
+          type: array
+          items: { type: string }
+
+        originalEquipment:
+          type: boolean
+
+        originallyFittedOn:
+          type: string
+
+        availability:
+          type: string
+          enum: [IN_STOCK, OUT_OF_STOCK]
+
+    Filters:
+      type: object
+      properties:
+        price:
+          type: object
+          properties:
+            min: { type: number }
+            max: { type: number }
+            currency: { type: string }
+
+        brand:
+          type: array
+          items:
+            type: object
+            properties:
+              name: { type: string }
+              count: { type: integer }
+
+        season:
+          type: array
+          items:
+            type: object
+            properties:
+              name: { type: string }
+              count: { type: integer }
+
+        promotion:
+          type: array
+          items:
+            type: object
+            properties:
+              value: { type: boolean }
+              label: { type: string }
+              count: { type: integer }
